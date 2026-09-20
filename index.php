@@ -24,8 +24,6 @@
         <meta property="og:description"
             content="This website is under construction. Please check back later.">
     <?php endif; ?>
-    <meta property="og:description"
-        content="This website is under construction. Please check back later.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?php echo esc_url(get_home_url()); ?>">
     <meta property="og:image" content="<?php echo esc_url(get_template_directory_uri() . '/assets/images/unstruction.webp'); ?>">
@@ -114,7 +112,7 @@
             href="https://github.com/digitalmalayalistudio/unstruction-classicpress-theme/"
             target="_blank"></sl-icon-button><br><?php echo esc_html(wp_get_theme()->get('Name') . ' ' . wp_get_theme()->get('Version')); ?> by
         <a href="<?php echo esc_url('http://studio.digitalmalayali.in/'); ?>">Digital Malayali Studio</a><br>
-        &copy; <?php echo esc_html(date('Y') . ' ' . get_bloginfo('name')); ?></small>
+        &copy; <?php echo esc_html(gmdate('Y') . ' ' . get_bloginfo('name')); ?></small>
     <?php wp_footer(); ?>
 </body>
 
