@@ -16,10 +16,14 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php if (get_theme_mod('unstruction_cp_mode', 'construction') === 'maintenance') : ?>
+        <meta name="description"
+            content="This website is undergoing maintenance. Please check back later.">
         <meta property="og:title" content="<?php bloginfo('name'); ?> - Undergoing Maintenance">
         <meta property="og:description"
             content="This website is undergoing maintenance. Please check back later.">
     <?php else : ?>
+        <meta name="description"
+            content="This website is under construction. Please check back later.">
         <meta property="og:title" content="<?php bloginfo('name'); ?> - Under Construction">
         <meta property="og:description"
             content="This website is under construction. Please check back later.">
