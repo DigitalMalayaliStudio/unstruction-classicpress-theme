@@ -1,0 +1,68 @@
+/*
+Theme Name: Unstruction CP
+Theme URI: https://github.com/DigitalMalayaliStudio/unstruction-classicpress-theme
+Author: Digital Malayali Studio
+Author URI: https://studio.digitalmalayali.in/
+Description: A free ClassicPress theme for quickly setting up a "Coming Soon," "Under Construction," or "Under Maintenance" page. Built with Shoelace web components, it includes a countdown timer to show visitors when your site will launch or reopen, and it's lightweight, responsive, and automatically adapts to light or dark mode. Unstruction is perfect for a new launch, a redesign, or scheduled maintenance, with a clean, professional placeholder page you can publish in minutes.
+Requires at least: 4.9
+Requires CP: 1.2
+Tested up to: 2.7.2
+Requires PHP: 7.4
+Version: 1.0
+License: GNU General Public License v3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: unstruction-cp
+*/
+
+body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--sl-font-sans);
+    line-height: var(--sl-line-height-normal);
+}
+
+.card-overview {
+    max-width: 350px;
+}
+
+.card-overview small {
+    color: var(--sl-color-neutral-700);
+}
+
+.card-overview [slot='footer'] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+sl-button::part(base) {
+    color: var(--sl-color-gray-50);
+    background-color: var(--theme-color-600);
+    border-color: var(--theme-color-300);
+}
+
+sl-button::part(base):hover {
+    background-color: var(--theme-color-500);
+}
+
+sl-badge::part(base) {
+    background-color: var(--theme-color-600);
+    --pulse-color: var(--theme-color-600);
+}
+
+sl-icon-button::part(base):hover {
+    color: var(--theme-color-600);
+}
+
+.copyright {
+    color: var(--sl-color-neutral-600);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.copyright a {
+    color: var(--theme-color-600);
+}
