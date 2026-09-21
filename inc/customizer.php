@@ -26,15 +26,14 @@ function unstruction_cp_customize_register($wp_customize)
     $wp_customize->add_setting('unstruction_cp_mode', array(
         'type'              => 'theme_mod',
         'default'           => 'construction',
-        'sanitize_callback' => 'sanitize_key',
+        'sanitize_callback' => 'unstruction_cp_sanitize_choice',
     ));
 
-    $wp_customize->add_control('unstruction_cp_mode_control', array(
+    $wp_customize->add_control('unstruction_cp_mode', array(
         'type'        => 'radio',
         'section'     => 'unstruction_cp_configuration_section',
         'label'    => __('Mode', 'unstruction-cp'),
         'description' => __('Set whether your site is under construction or undergoing maintenance.', 'unstruction-cp'),
-        'settings'    => 'unstruction_cp_mode',
         'choices'     => array(
             'construction' => __('Construction', 'unstruction-cp'),
             'maintenance'  => __('Maintenance', 'unstruction-cp'),
@@ -48,11 +47,10 @@ function unstruction_cp_customize_register($wp_customize)
         'transport'         => 'refresh',
     ));
 
-    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'image_control', array(
+    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'unstruction_cp_image', array(
         'label' => __('Featured Image', 'unstruction-cp'),
         'section' => 'unstruction_cp_configuration_section',
         'mime_type' => 'image',
-        'settings'    => 'unstruction_cp_image',
     )));
 
     // Date & time
@@ -62,12 +60,11 @@ function unstruction_cp_customize_register($wp_customize)
         'sanitize_callback' => 'unstruction_cp_sanitize_date',
     ));
 
-    $wp_customize->add_control('unstruction_cp_date_time_control', array(
+    $wp_customize->add_control('unstruction_cp_date_time', array(
         'type'        => 'datetime-local',
         'section'     => 'unstruction_cp_configuration_section',
         'label'    => __('Date & Time', 'unstruction-cp'),
         'description' => __('Set the planned launch date and time.', 'unstruction-cp'),
-        'settings'    => 'unstruction_cp_date_time',
     ));
 
     // Theme color
@@ -83,15 +80,14 @@ function unstruction_cp_customize_register($wp_customize)
     $wp_customize->add_setting('unstruction_cp_color', array(
         'type'              => 'theme_mod',
         'default'           => 'orange',
-        'sanitize_callback' => 'sanitize_key',
+        'sanitize_callback' => 'unstruction_cp_sanitize_choice',
     ));
 
-    $wp_customize->add_control('unstruction_cp_color_control', array(
+    $wp_customize->add_control('unstruction_cp_color', array(
         'type'        => 'select',
         'section'     => 'unstruction_cp_configuration_section',
         'label'    => __('Color', 'unstruction-cp'),
         'description' => $color_description,
-        'settings'    => 'unstruction_cp_color',
         'choices'     => array(
             'primary' => __('Primary', 'unstruction-cp'),
             'success' => __('Success', 'unstruction-cp'),
@@ -122,54 +118,50 @@ function unstruction_cp_customize_register($wp_customize)
     // Contact details
     $wp_customize->add_setting('unstruction_cp_phone', array(
         'type'              => 'theme_mod',
-        'default'           => '#',
+        'default'           => '123456789',
         'sanitize_callback' => 'sanitize_text_field',
     ));
 
-    $wp_customize->add_control('unstruction_cp_phone_control', array(
+    $wp_customize->add_control('unstruction_cp_phone', array(
         'type'        => 'tel',
         'section'     => 'unstruction_cp_configuration_section',
         'label'       => __('Phone No.', 'unstruction-cp'),
-        'settings'    => 'unstruction_cp_phone',
     ));
 
     $wp_customize->add_setting('unstruction_cp_email', array(
         'type'              => 'theme_mod',
-        'default'           => '#',
-        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => 'info@example.com',
+        'sanitize_callback' => 'sanitize_email',
     ));
 
-    $wp_customize->add_control('unstruction_cp_email_control', array(
+    $wp_customize->add_control('unstruction_cp_email', array(
         'type'        => 'email',
         'section'     => 'unstruction_cp_configuration_section',
         'label'       => __('Email', 'unstruction-cp'),
-        'settings'    => 'unstruction_cp_email',
     ));
 
     $wp_customize->add_setting('unstruction_cp_whatsapp', array(
         'type'              => 'theme_mod',
-        'default'           => '#',
+        'default'           => '123456789',
         'sanitize_callback' => 'sanitize_text_field',
     ));
 
-    $wp_customize->add_control('unstruction_cp_whatsapp_control', array(
+    $wp_customize->add_control('unstruction_cp_whatsapp', array(
         'type'        => 'tel',
         'section'     => 'unstruction_cp_configuration_section',
         'label'       => __('WhatsApp', 'unstruction-cp'),
-        'settings'    => 'unstruction_cp_whatsapp',
     ));
 
     $wp_customize->add_setting('unstruction_cp_location', array(
         'type'              => 'theme_mod',
-        'default'           => '#',
-        'sanitize_callback' => 'esc_url_raw',
+        'default'           => 'https://example.com',
+        'sanitize_callback' => 'sanitize_url',
     ));
 
-    $wp_customize->add_control('unstruction_cp_location_control', array(
+    $wp_customize->add_control('unstruction_cp_location', array(
         'type'        => 'url',
         'section'     => 'unstruction_cp_configuration_section',
         'label'       => __('Location (URL)', 'unstruction-cp'),
-        'settings'    => 'unstruction_cp_location',
     ));
 }
 
@@ -197,21 +189,29 @@ add_action('customize_register', 'unstruction_cp_remove_customizer_panels', 999)
  * @param string $input Date and time input string.
  * @return string Sanitized date and time string, or empty string if invalid.
  */
-function unstruction_cp_sanitize_date($input)
-{
-    if (empty($input)) {
-        return '';
-    }
+function unstruction_cp_sanitize_date( $input ) {
+    $input = (string) $input;
 
-    $date = DateTime::createFromFormat('Y-m-d\TH:i', $input);
-    if ($date && $date->format('Y-m-d\TH:i') === $input) {
-        return $input;
-    }
-
-    $date_sec = DateTime::createFromFormat('Y-m-d\TH:i:s', $input);
-    if ($date_sec && $date_sec->format('Y-m-d\TH:i:s') === $input) {
-        return $input;
+    foreach ( array( 'Y-m-d\TH:i', 'Y-m-d\TH:i:s' ) as $format ) {
+        $date = DateTime::createFromFormat( $format, $input );
+        if ( $date && $date->format( $format ) === $input ) {
+            return $input;
+        }
     }
 
     return '';
+}
+
+/**
+ * Sanitization callback for select and radio choices.
+ *
+ * @param string               $input   Submitted value.
+ * @param WP_Customize_Setting $setting Customizer setting instance.
+ * @return string Validated value or default if invalid.
+ */
+function unstruction_cp_sanitize_choice( $input, $setting ) {
+    $input   = sanitize_key( $input );
+    $choices = $setting->manager->get_control( $setting->id )->choices;
+
+    return array_key_exists( $input, $choices ) ? $input : $setting->default;
 }

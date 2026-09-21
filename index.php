@@ -72,10 +72,10 @@
             <br>Please check back later!
         <?php endif; ?>
         <?php
-        $phone    = get_theme_mod('unstruction_cp_phone', '#');
-        $email    = get_theme_mod('unstruction_cp_email', '#');
-        $whatsapp = get_theme_mod('unstruction_cp_whatsapp', '#');
-        $location = get_theme_mod('unstruction_cp_location', '#');
+        $phone    = get_theme_mod('unstruction_cp_phone', '123456789');
+        $email    = get_theme_mod('unstruction_cp_email', 'info@example.com');
+        $whatsapp = get_theme_mod('unstruction_cp_whatsapp', '123456789');
+        $location = get_theme_mod('unstruction_cp_location', 'https://example.com');
         ?>
         <?php if (!empty($phone) || !empty($email) || !empty($whatsapp) || !empty($location)) : ?>
             <div slot="footer">
@@ -87,8 +87,7 @@
                         </sl-button>
                     <?php endif; ?>
                     <?php if (!empty($email)) : ?>
-                        <?php $email_href = ($email === '#') ? '#' : 'mailto:' . $email; ?>
-                        <sl-button size="medium" circle href="<?php echo esc_attr($email_href); ?>">
+                        <sl-button size="medium" circle href="<?php echo esc_url('mailto:' . $email); ?>">
                             <sl-icon name="envelope" label="<?php esc_attr_e('Mail', 'unstruction-cp'); ?>"></sl-icon>
                         </sl-button>
                     <?php endif; ?>
