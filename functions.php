@@ -44,6 +44,7 @@ function unstruction_cp_enqueue_styles_scripts()
 		true
 	);
 
+	// Pass the target date & time to script.js
 	$date_time = get_theme_mod('unstruction_cp_date_time', '2100-01-01T00:00');
 
 	$data = array(

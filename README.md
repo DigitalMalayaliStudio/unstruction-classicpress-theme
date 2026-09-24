@@ -1,14 +1,14 @@
 # Unstruction CP
 
-A free ClassicPress theme for quickly setting up a "Coming Soon," "Under Construction," or "Under Maintenance" page. Built with Shoelace web components, it includes a countdown timer to show visitors when your site will launch or reopen, and it's lightweight, responsive, and automatically adapts to light or dark mode.
+A free ClassicPress theme for quickly setting up an "Under Construction" or "Under Maintenance" page. Built with Shoelace web components, it includes a countdown timer to show visitors when your site will launch or reopen, and it's lightweight, responsive, and automatically adapts to light or dark mode.
 
 ![Unstruction CP](screenshot.png)
 
-**Version**: 1.0  
+**Version**: 1.1  
 **Contributors**: Digital Malayali Studio  
 **Requires at least**: 4.9     
 **Requires CP**: 1.2  
-**Tested up to**: 2.7.2  
+**Tested up to**: 2.7.3  
 **Requires PHP**: 7.4  
 **Text Domain**: unstruction-cp  
 **Tags**: one-column  
@@ -23,12 +23,26 @@ A free ClassicPress theme for quickly setting up a "Coming Soon," "Under Constru
 - **Contact Details:** Option to show the necessary contact info.
 - **Dark Mode Support:** Automatically chooses dark/light mode based on user's system preference.
 - **Lightweight & Fast:** Minimal assets and zero bloat.
+- **SEO Friendly:** Uses all the necessary Open Graph tags for metadata.
+
+## Installation
+
+1. Download the theme ZIP file.
+2. Log in to your ClassicPress or WordPress dashboard.
+3. Navigate to **Appearance > Themes**.
+4. Click **Add New**, then **Upload Theme**.
+5. Select the ZIP file and click **Install Now**.
+6. **Activate** the theme.
 
 ## How to Customize
 
 Go to **Appearance > Customize > Configuration** to customize Unstruction. From there, you can set the site mode, featured image, countdown date and time, theme color, and contact details. If you don't want your contact details to appear, leave them blank.
 
 ## Changelog
+
+### 1.1
+- Added an option to show credits
+- Tested up to 2.7.3
 
 ### 1.0
 - Initial release

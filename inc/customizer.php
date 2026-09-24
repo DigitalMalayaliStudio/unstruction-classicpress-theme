@@ -163,6 +163,20 @@ function unstruction_cp_customize_register($wp_customize)
         'section'     => 'unstruction_cp_configuration_section',
         'label'       => __('Location (URL)', 'unstruction-cp'),
     ));
+
+    // Credits
+    $wp_customize->add_setting('unstruction_cp_credits', array(
+        'type'              => 'theme_mod',
+        'default'           => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    $wp_customize->add_control('unstruction_cp_credits', array(
+        'type'        => 'checkbox',
+        'section'     => 'unstruction_cp_configuration_section',
+        'label'    => __('Show Credits', 'unstruction-cp'),
+        'description' => __('Check if you\'d like to show credits for the theme author.', 'unstruction-cp'),
+    ));
 }
 
 add_action('customize_register', 'unstruction_cp_customize_register');

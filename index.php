@@ -16,17 +16,13 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php if (get_theme_mod('unstruction_cp_mode', 'construction') === 'maintenance') : ?>
-        <meta name="description"
-            content="This website is undergoing maintenance. Please check back later.">
+        <meta name="description" content="This website is undergoing maintenance. Please check back later.">
         <meta property="og:title" content="<?php bloginfo('name'); ?> - Undergoing Maintenance">
-        <meta property="og:description"
-            content="This website is undergoing maintenance. Please check back later.">
+        <meta property="og:description" content="This website is undergoing maintenance. Please check back later.">
     <?php else : ?>
-        <meta name="description"
-            content="This website is under construction. Please check back later.">
+        <meta name="description" content="This website is under construction. Please check back later.">
         <meta property="og:title" content="<?php bloginfo('name'); ?> - Under Construction">
-        <meta property="og:description"
-            content="This website is under construction. Please check back later.">
+        <meta property="og:description" content="This website is under construction. Please check back later.">
     <?php endif; ?>
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?php echo esc_url(get_home_url()); ?>">
@@ -78,6 +74,7 @@
         $location = get_theme_mod('unstruction_cp_location', 'https://example.com');
         ?>
         <?php if (!empty($phone) || !empty($email) || !empty($whatsapp) || !empty($location)) : ?>
+            <br><small>Feel free to reach out to us.</small>
             <div slot="footer">
                 <sl-button-group label="Alignment">
                     <?php if (!empty($phone)) : ?>
@@ -111,11 +108,17 @@
         <?php endif; ?>
     </sl-card>
 
-    <small class="copyright"><sl-icon-button name="github" label="Settings" style="font-size: 1.2rem;"
-            href="https://github.com/digitalmalayalistudio/unstruction-classicpress-theme/"
-            target="_blank"></sl-icon-button><br><?php echo esc_html(wp_get_theme()->get('Name') . ' ' . wp_get_theme()->get('Version')); ?> by
-        <a href="<?php echo esc_url('http://studio.digitalmalayali.in/'); ?>">Digital Malayali Studio</a><br>
-        &copy; <?php echo esc_html(gmdate('Y') . ' ' . get_bloginfo('name')); ?></small>
+    <small class="copyright">
+        <?php if (get_theme_mod('unstruction_cp_credits', false)) : ?>
+            <sl-icon-button name="github" label="GitHub" style="font-size: 1.2rem;"
+                href="https://github.com/digitalmalayalistudio/unstruction-classicpress-theme/"
+                target="_blank"></sl-icon-button><br><?php echo esc_html(wp_get_theme()->get('Name') . ' ' . wp_get_theme()->get('Version')); ?> by
+            <a href="<?php echo esc_url('https://studio.digitalmalayali.in/'); ?>" target="_blank" rel="noopener noreferrer">Digital Malayali Studio</a><br>
+        <?php else : ?>
+            Powered by <?php echo esc_html(wp_get_theme()->get('Name') . ' ' . wp_get_theme()->get('Version')); ?><br>
+        <?php endif; ?>
+        &copy; <?php echo esc_html(gmdate('Y') . ' ' . get_bloginfo('name')); ?>
+    </small>
     <?php wp_footer(); ?>
 </body>
 
